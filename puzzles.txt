@@ -1,0 +1,6 @@
+Puzzle #1
+Yellow - Wet Weather: Hail, Rain, Sleet, Snow
+Green - NBA Teams: Bucks, Heat, Jazz, Nets
+Blue - Keyboard Keys: Option, Return, Shift, Tab
+Purple - Palindromes: Kayak, Level, Mom, Racecar
+
