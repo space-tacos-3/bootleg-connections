@@ -44,7 +44,7 @@ BASICFONT = pygame.font.SysFont('helveticaneue', 26)
 # We parse the file in blocks separated by a new line.
 # The puzzles are added to a dictionary.
 def parsePuzzles():
-    puzzle_file = open('puzzles_all.txt')
+    puzzle_file = open('puzzles.txt', encoding='utf8')
     puzzles = {}
     current_puzzle = []
 
