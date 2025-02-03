@@ -1,6 +1,7 @@
 import pygame, sys, random, pyperclip
 from pygame.locals import *
-from pygame_emojis import load_emoji
+import pygame.freetype
+#from pygame_emojis import load_emoji
 
 pygame.init()
 
@@ -38,13 +39,15 @@ box_width=200
 box_height=100
 
 BASICFONT = pygame.font.SysFont('helveticaneue', 26)
+seguisy64 = pygame.freetype.SysFont("segoeuisymbol", 64)
+seguisy32 = pygame.freetype.SysFont("segoeuisymbol", 32)
 #BASICFONT = pygame.font.Font('/Library/Fonts/Arial Unicode.ttf', 20)
 
 # All the puzzles are stored in a .txt file
 # We parse the file in blocks separated by a new line.
 # The puzzles are added to a dictionary.
 def parsePuzzles():
-    puzzle_file = open('puzzles_all.txt')
+    puzzle_file = open('puzzles.txt', encoding='utf8')
     puzzles = {}
     current_puzzle = []
 
@@ -129,8 +132,9 @@ def drawBoard(puzzle_title, wordlist, chosen_boxes, solved_rows, categories, mis
     textRect.center = 505, 600
     DISPLAYSURF.blit(textSurf, textRect)
 
-    textSurf = load_emoji('❤️', (64,64))
-    textRect = textSurf.get_rect()
+    #textSurf = load_emoji('❤️', (64,64))
+    textSurf, textRect = seguisy64.render('❤', BLACK)
+    #textRect = textSurf.get_rect()
     textRect.center = 120, 600
     DISPLAYSURF.blit(textSurf, textRect)
     textSurf = BASICFONT.render(str(4-mistakes), True, BLACK)
@@ -164,8 +168,9 @@ def drawResults(player_moves):
     DISPLAYSURF.blit(textSurf, textRect)
     for i, move in enumerate(player_moves.split('\n')):
         for j, emoji in enumerate(move):
-            textSurf = load_emoji(emoji, (32,32))
-            textRect = textSurf.get_rect()
+            #textSurf = load_emoji(emoji, (32,32))
+            #textRect = textSurf.get_rect()
+            textSurf, textRect = seguisy32.render(emoji, BLACK)
             textRect.center = 412+35*(j+1), 120+30*(i+1)
             DISPLAYSURF.blit(textSurf, textRect)
     pygame.draw.rect(DISPLAYSURF, BEIGE, (300,400,box_width-10,box_height))
@@ -188,7 +193,9 @@ def drawGameOver(player_moves):
     DISPLAYSURF.blit(textSurf, textRect)
     for i, move in enumerate(player_moves.split('\n')):
         for j, emoji in enumerate(move):
-            textSurf = load_emoji(emoji, (32,32))
+            #textSurf = load_emoji(emoji, (32,32))
+            #textRect = textSurf.get_rect()
+            textSurf, textRect = seguisy32.render(emoji, BLACK)
             textRect = textSurf.get_rect()
             textRect.center = 412+35*(j+1), 120+30*(i+1)
             DISPLAYSURF.blit(textSurf, textRect)
